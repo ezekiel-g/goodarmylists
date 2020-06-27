@@ -1,0 +1,54 @@
+{
+    "name":"goodarmylists",
+    "engines": {
+        "node": "14.4.0",
+        "yarn": "1.22.4"
+    },
+    "private":true,
+    "dependencies":{
+        "@babel/preset-react":"^7.10.1",
+        "@rails/actioncable":"^6.0.0",
+        "@rails/activestorage":"^6.0.0",
+        "@rails/ujs":"^6.0.0",
+        "@rails/webpacker":"4.2.2",
+        "babel-plugin-transform-react-remove-prop-types":"^0.4.24",
+        "prop-types":"^15.7.2",
+        "react":"^16.13.1",
+        "react-dom":"^16.13.1",
+        "react-router-dom": "^5.2.0",
+        "react-favicon": "^0.0.18",
+        "react-modal": "^3.11.2",
+        "redbox-react": "^1.6.0",
+        "turbolinks":"^5.2.0"
+    },
+    "devDependencies":{
+        "babel-core":"^7.0.0-bridge.0",
+        "babel-jest":"^23.4.2",
+        "enzyme":"^3.11.0",
+        "enzyme-adapter-react-16":"^1.15.2",
+        "fetch-mock":"^9.10.3",
+        "jest":"^26.1.0",
+        "webpack-cli":"^3.3.12",
+        "webpack-dev-server":"^3.11.0"
+    },
+    "scripts": {
+        "start": "./bin/webpack-dev-server",
+        "test": "node_modules/.bin/jest",
+        "test:dev": "node_modules/.bin/jest --notify --watch"
+    },
+    "jest":{
+        "automock":false,
+        "roots":[
+            "spec/javascript",
+            "app/javascript"
+        ],
+        "moduleDirectories":[
+            "node_modules",
+            "app/javascript"
+        ],
+        "setupFiles":[
+            "./spec/javascript/support/enzyme.js"
+        ],
+        "testURL":"http://localhost/"
+    }
+}
