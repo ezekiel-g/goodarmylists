@@ -3,10 +3,10 @@ import paypal from '../../../../assets/images/paypal.gif'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Modal from 'react-modal'
-import ArmyButtons from '../components/ArmyButtons'
+import ArmyDropdown from '../components/ArmyDropdown'
 import FormattedList from '../components/FormattedList'
 import UnitEntryButton from '../components/UnitEntryButton'
-import AlliesButtons from '../components/AlliesButtons'
+import AllyButtons from '../components/AllyButtons'
 import UnitEntryNameTile from '../components/UnitEntryNameTile'
 import UnitOptionIcon from '../components/UnitOptionIcon'
 import ArtefactIcon from '../components/ArtefactIcon'
@@ -24,7 +24,7 @@ class KowInnerContainer extends Component {
 			pointTotal: 0,
 			unitStrengthTotal: 0,
 			indexCount: 0,
-			armyButtonsVisible: false,
+			armyDropdownVisible: false,
 			formattedListVisible: false,
 			unitOptionsVisible: false,
 			artefactsVisible: false,
@@ -67,7 +67,7 @@ class KowInnerContainer extends Component {
 		this.removeUnitOption = this.removeUnitOption.bind(this)
 		this.removeAlliedUnitOption = this.removeAlliedUnitOption.bind(this)
 		this.removeArtefact = this.removeArtefact.bind(this)
-		this.toggleArmyButtons = this.toggleArmyButtons.bind(this)
+		this.toggleArmyDropdown = this.toggleArmyDropdown.bind(this)
 		this.toggleFormattedList = this.toggleFormattedList.bind(this)
 		this.toggleUnitOptions = this.toggleUnitOptions.bind(this)
 		this.toggleArtefacts = this.toggleArtefacts.bind(this)
@@ -78,8 +78,8 @@ class KowInnerContainer extends Component {
 		this.clearList = this.clearList.bind(this)
 	}
 
-	updateSelectedArmy(selectedArmy) {
-		this.setState({ selectedArmy: selectedArmy })
+	updateSelectedArmy(army) {
+		this.setState({ selectedArmy: army })
 		this.clearList()
 	}
 
@@ -1304,14 +1304,18 @@ class KowInnerContainer extends Component {
 		})
 	}
 
-	toggleArmyButtons() {
+	toggleArmyDropdown() {
+		let armyDropdown = document.getElementById('army-dropdown-id')
+		let armyDropdownOptions = document.getElementById('army-options-after-placeholder')
 		let isAboutToBeVisible
-		if (this.state.armyButtonsVisible === false) {
+		if (this.state.armyDropdownVisible === false) {
+			armyDropdown.style.overflow = 'scroll'
 			isAboutToBeVisible = true
 		} else {
+			armyDropdown.style.overflow = 'visible'
 			isAboutToBeVisible = false
 		}
-		this.setState({ armyButtonsVisible: isAboutToBeVisible })
+		this.setState({ armyDropdownVisible: isAboutToBeVisible })
 	}
 
 	toggleFormattedList() {
@@ -1383,7 +1387,7 @@ class KowInnerContainer extends Component {
 			pointTotal: 0,
 			unitStrengthTotal: 0,
 			indexCount: 0,
-			armyButtonsVisible: false,
+			armyDropdownVisible: false,
 			formattedListVisible: false,
 			unitOptionsVisible: false,
 			artefactsVisible: false,
@@ -1414,11 +1418,17 @@ class KowInnerContainer extends Component {
 		let appElement = document.getElementById('app')
 		let selectedArmy = this.state.selectedArmy
 		let i
-		let hidden
-		if (selectedArmy === '') {
-			hidden = style['hidden']
+		let displayNoneArmyOptions
+		if (this.state.armyDropdownVisible === false) {
+			displayNoneArmyOptions = style['display-none']
 		} else {
-			hidden = ''
+			displayNoneArmyOptions = ''
+		}
+		let displayNoneBottom
+		if (selectedArmy === '') {
+			displayNoneBottom = style['display-none']
+		} else {
+			displayNoneBottom = ''
 		}
 		let unitOptionSelectionTile
 		let artefactSelectionTile
@@ -1605,11 +1615,9 @@ class KowInnerContainer extends Component {
 				</div>
 		}
 		if (this.state.selectedArmy === '') {
-			appElement.style.position = 'fixed'
-			appElement.style.width = '100%'
+			document.body.style.overflow = 'hidden'
 		} else {
-			appElement.style.position = 'static'
-			appElement.style.width = 'auto'
+			document.body.style.overflow = 'visible'
 			clearListDiv =
 				<div className={style['clear-list-div']}>
 					<span onClick={this.clearList} className={style['clear-or-cancel-label']}>Clear List</span>
@@ -1661,7 +1669,7 @@ class KowInnerContainer extends Component {
 				})
 			} else {
 				unitEntryButtonDisplay =
-					<AlliesButtons
+					<AllyButtons
 						armies={this.props.armies}
 						selectedArmy={this.state.selectedArmy}
 						units={units}
@@ -2087,7 +2095,7 @@ class KowInnerContainer extends Component {
 		}
 
 		let display =
-			<div id="hidden-section-id" className={hidden}>
+			<div id="hidden-section-id" className={displayNoneBottom}>
 				{clearListDiv}	
 				<div className={style['everything-after-army-dropdown']}>
 					<div>
@@ -2135,63 +2143,53 @@ class KowInnerContainer extends Component {
 							<h2 className={style['main-title']}>Make a Good Kings of War List</h2>
 						</div>
 						<div className={style['copyright-notice']}>Kings of War is copyrighted by Mantic Entertainment</div>
-						<div onClick={this.toggleArmyButtons} className={style['army-buttons-div']}>
-							<span
-								id="army-buttons-placeholder-id"
-								className={style['army-buttons-placeholder']}
-							>
+						<div
+							onClick={this.toggleArmyDropdown}
+							className={style['army-dropdown-placeholder']}
+						>
+							<span className={style['army-dropdown-placeholder-label']}>
 								Select Army...
 							</span>
-							<div className={style['army-buttons-caret']}>&#8681;</div>
-						</div>	
+						</div>						
+						<ArmyDropdown
+							armies={this.props.armies}
+							selectedArmy={this.state.selectedArmy}
+							updateSelectedArmy={this.updateSelectedArmy}
+							toggleArmyDropdown={this.toggleArmyDropdown}
+							visible={displayNoneArmyOptions}
+						/>
 					</div>
 					<div>{display}</div>
-					<div id="everything-before-modals-id" className={style['everything-before-modals']}>
-						<Modal
-							appElement={appElement}
-							isOpen={this.state.armyButtonsVisible}
-							onRequestClose={this.toggleArmyButtons}
-							shouldCloseOnOverlayClick={true}
-							className={style['army-selection-modal']}
-							ariaHideApp={false}
-						>
-							<ArmyButtons
-								armies={this.props.armies}
-								updateSelectedArmy={this.updateSelectedArmy}
-								toggleArmyButtons={this.toggleArmyButtons}
-							/>
-						</Modal>
-						<Modal
-							appElement={appElement}
-							isOpen={this.state.formattedListVisible}
-							onRequestClose={this.toggleFormattedList}
-							shouldCloseOnOverlayClick={true}
-							className={style['formatted-list-modal']}
-							ariaHideApp={false}
-						>
-							<FormattedList
-								selectedArmy={selectedArmy}
-								listedUnitsTop={listedUnitsTop}
-								listedUnitsSecondQuarter={listedUnitsSecondQuarter}
-								listedUnitsThirdQuarter={listedUnitsThirdQuarter}
-								listedUnitsBottom={listedUnitsBottom}
-								selectedUnitOptions={this.state.selectedUnitOptions}
-								selectedArtefacts={this.state.selectedArtefacts}
-								pointTotal={parseInt(this.state.pointTotal)}
-								unitStrengthTotal={grandUnitStrengthTotal}
-								unitCount={unitCount}
-								alliedArmy={this.state.alliedArmy}
-								alliedListedUnitsTop={alliedListedUnitsTop}
-								alliedListedUnitsSecondQuarter={alliedListedUnitsSecondQuarter}
-								alliedListedUnitsThirdQuarter={alliedListedUnitsThirdQuarter}
-								alliedListedUnitsBottom={alliedListedUnitsBottom}
-								alliedSelectedUnitOptions={this.state.alliedSelectedUnitOptions}
-								alliedPointTotal={parseInt(this.state.alliedPointTotal)}
-								alliedPointPercentage={alliedPointPercentage}
-								toggleFormattedList={this.toggleFormattedList}
-							/>
-						</Modal>
-					</div>
+					<Modal
+						appElement={appElement}
+						isOpen={this.state.formattedListVisible}
+						onRequestClose={this.toggleFormattedList}
+						shouldCloseOnOverlayClick={true}
+						className={style['formatted-list-modal']}
+						ariaHideApp={false}
+					>
+						<FormattedList
+							selectedArmy={selectedArmy}
+							listedUnitsTop={listedUnitsTop}
+							listedUnitsSecondQuarter={listedUnitsSecondQuarter}
+							listedUnitsThirdQuarter={listedUnitsThirdQuarter}
+							listedUnitsBottom={listedUnitsBottom}
+							selectedUnitOptions={this.state.selectedUnitOptions}
+							selectedArtefacts={this.state.selectedArtefacts}
+							pointTotal={parseInt(this.state.pointTotal)}
+							unitStrengthTotal={grandUnitStrengthTotal}
+							unitCount={unitCount}
+							alliedArmy={this.state.alliedArmy}
+							alliedListedUnitsTop={alliedListedUnitsTop}
+							alliedListedUnitsSecondQuarter={alliedListedUnitsSecondQuarter}
+							alliedListedUnitsThirdQuarter={alliedListedUnitsThirdQuarter}
+							alliedListedUnitsBottom={alliedListedUnitsBottom}
+							alliedSelectedUnitOptions={this.state.alliedSelectedUnitOptions}
+							alliedPointTotal={parseInt(this.state.alliedPointTotal)}
+							alliedPointPercentage={alliedPointPercentage}
+							toggleFormattedList={this.toggleFormattedList}
+						/>
+					</Modal>
 				</div>
 				<div id="print-section-id" className={style['print-section']}></div>
 			</div>

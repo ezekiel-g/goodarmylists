@@ -59,8 +59,8 @@ hr {
 	user-select: none;
 }
 
-@media only screen and (max-width: 175px) {
-	.army-buttons {
+/*@media only screen and (max-width: 175px) {
+	.army-dropdown {
 		display: inline-flex;
 		width: 100%;
 	}
@@ -76,31 +76,43 @@ hr {
 	#army-buttons-placeholder-id {
 		margin: 0px 0px 0px -4px;
 	}
-}
+}*/
 
-.army-buttons-div {
-	border: 1px solid #000000;
-	background-color: #FFFFFF;
-	height: 40px;
-	padding: 7px 0px 0px 10px;
-	color: #949391;
+.army-dropdown-placeholder {
+	border-top: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #000000;
+	padding: 10px 0px 10px 15px;
 	cursor: pointer;
-	overflow: hidden;
+	background-color: #FFFFFF;
 	user-select: none;
 }
 
-.army-buttons {
+.army-dropdown {
+	border-top: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #000000;
+	background-color: #FFFFFF;
 	user-select: none;
+	box-shadow: 10px 10px 12px -2px rgba(0,0,0,0.75);
 }
 
-.army-buttons-placeholder {
-	white-space: nowrap;
+.army-dropdown-option {
+	border-bottom: 1px solid #000000;
+	padding: 10px 0px 10px 15px;
+	cursor: pointer;
 }
 
-.army-buttons-caret {
-	white-space: nowrap;
-	float: right;
-	margin: 0px 10px 0px 0px;
+.army-dropdown-option:hover {
+	background-color: #D3D3D3;	
+}
+
+.army-dropdown-placeholder-label {
+	color: #949391;
+}
+
+#army-options-after-placeholder {
+	max-height: 270px;
 }
 
 .main-title-box {
@@ -127,6 +139,10 @@ hr {
 
 .align-left {
 	text-align: left;
+}
+
+.display-none {
+	display: none;
 }
 
 .hidden {
@@ -505,15 +521,8 @@ hr {
 	background-color: #FFFFFF;
 }
 
-.army-selection-modal {
-	height: 87%;
-	width: 95%;
-	background-color: #FFFFFF;
-    overflow-y: auto;
-    position: absolute;
-    top: 46%;
-    left: 50%;
-    transform: translate(-50%, -50%) !important;
+.army-dropdown{
+
 }
 
 .formatted-list-modal {
