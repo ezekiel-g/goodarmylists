@@ -1,7 +1,6 @@
 import style from '../../assets/stylesheets/games.module.css'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import KowOuterContainer from './kow/containers/KowOuterContainer'
 
 const GamesContainer = props => {
 	return (

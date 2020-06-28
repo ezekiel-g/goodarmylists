@@ -1,3 +1,4 @@
+import style from '../../../../assets/stylesheets/kow.module.css'
 import React, { Component } from 'react'
 import KowInnerContainer from './KowInnerContainer'
 
@@ -126,7 +127,7 @@ class KowOuterContainer extends Component {
 		}
 
 		return (
-			<div id="sections-container-id" className="sections-container">	
+			<div id="sections-container-id" className={style['sections-container']}>	
 				<KowInnerContainer
 					armies={this.state.armies}
 					units={this.state.units}
