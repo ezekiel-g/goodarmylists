@@ -59,62 +59,6 @@ hr {
 	user-select: none;
 }
 
-/*@media only screen and (max-width: 175px) {
-	.army-dropdown {
-		display: inline-flex;
-		width: 100%;
-	}
-	#army-buttons-placeholder-id {
-		margin: 0px 0px 0px -2px;
-	}
-	.army-buttons-caret {
-		display: none;
-	}
-}
-
-@media only screen and (max-width: 154px) {
-	#army-buttons-placeholder-id {
-		margin: 0px 0px 0px -4px;
-	}
-}*/
-
-.army-dropdown-placeholder {
-	border-top: 1px solid #000000;
-	border-right: 1px solid #000000;
-	border-left: 1px solid #000000;
-	padding: 10px 0px 10px 15px;
-	cursor: pointer;
-	background-color: #FFFFFF;
-	user-select: none;
-}
-
-.army-dropdown {
-	border-top: 1px solid #000000;
-	border-right: 1px solid #000000;
-	border-left: 1px solid #000000;
-	background-color: #FFFFFF;
-	user-select: none;
-	box-shadow: 10px 10px 12px -2px rgba(0,0,0,0.75);
-}
-
-.army-dropdown-option {
-	border-bottom: 1px solid #000000;
-	padding: 10px 0px 10px 15px;
-	cursor: pointer;
-}
-
-.army-dropdown-option:hover {
-	background-color: #D3D3D3;	
-}
-
-.army-dropdown-placeholder-label {
-	color: #949391;
-}
-
-#army-options-after-placeholder {
-	max-height: 270px;
-}
-
 .main-title-box {
 	background-color: #A41F26;
 	border-radius: 6px;
