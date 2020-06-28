@@ -2,7 +2,7 @@ import style from '../../../../assets/stylesheets/kow.module.css'
 import React, { Component } from 'react'
 import AlliedUnitEntryButton from './AlliedUnitEntryButton'
 
-class AlliesButtons extends Component {
+class AllyButtons extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -278,4 +278,4 @@ class AlliesButtons extends Component {
 	}
 }
 
-export default AlliesButtons
+export default AllyButtons
