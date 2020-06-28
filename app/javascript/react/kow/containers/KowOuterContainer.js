@@ -1,4 +1,3 @@
-import style from '../../../../assets/stylesheets/kow.module.css'
 import React, { Component } from 'react'
 import KowInnerContainer from './KowInnerContainer'
 
