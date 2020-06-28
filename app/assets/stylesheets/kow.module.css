@@ -465,10 +465,6 @@ hr {
 	background-color: #FFFFFF;
 }
 
-.army-dropdown{
-
-}
-
 .formatted-list-modal {
 	height: 80%;
 	width: 95%;
@@ -502,10 +498,10 @@ hr {
 
 .formatted-list-box {
 	padding: 20px;
-	line-height: 107%;
 }
 
 .formatted-list {
+	line-height: 113%;
 	height: auto;
 	border: none;
 	box-shadow: none;
