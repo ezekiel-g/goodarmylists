@@ -2,8 +2,8 @@ import style from '../../../../assets/stylesheets/kow.module.css'
 import paypal from '../../../../assets/images/paypal.gif'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Select from 'react-select'
 import Modal from 'react-modal'
-import ArmyDropdown from '../components/ArmyDropdown'
 import FormattedList from '../components/FormattedList'
 import UnitEntryButton from '../components/UnitEntryButton'
 import AllyButtons from '../components/AllyButtons'
@@ -24,7 +24,6 @@ class KowInnerContainer extends Component {
 			pointTotal: 0,
 			unitStrengthTotal: 0,
 			indexCount: 0,
-			armyDropdownVisible: false,
 			formattedListVisible: false,
 			unitOptionsVisible: false,
 			artefactsVisible: false,
@@ -67,7 +66,6 @@ class KowInnerContainer extends Component {
 		this.removeUnitOption = this.removeUnitOption.bind(this)
 		this.removeAlliedUnitOption = this.removeAlliedUnitOption.bind(this)
 		this.removeArtefact = this.removeArtefact.bind(this)
-		this.toggleArmyDropdown = this.toggleArmyDropdown.bind(this)
 		this.toggleFormattedList = this.toggleFormattedList.bind(this)
 		this.toggleUnitOptions = this.toggleUnitOptions.bind(this)
 		this.toggleArtefacts = this.toggleArtefacts.bind(this)
@@ -79,7 +77,7 @@ class KowInnerContainer extends Component {
 	}
 
 	updateSelectedArmy(army) {
-		this.setState({ selectedArmy: army })
+		this.setState({ selectedArmy: army.value })
 		this.clearList()
 	}
 
@@ -1304,20 +1302,6 @@ class KowInnerContainer extends Component {
 		})
 	}
 
-	toggleArmyDropdown() {
-		let armyDropdown = document.getElementById('army-dropdown-id')
-		let armyDropdownOptions = document.getElementById('army-options-after-placeholder')
-		let isAboutToBeVisible
-		if (this.state.armyDropdownVisible === false) {
-			armyDropdown.style.overflow = 'scroll'
-			isAboutToBeVisible = true
-		} else {
-			armyDropdown.style.overflow = 'visible'
-			isAboutToBeVisible = false
-		}
-		this.setState({ armyDropdownVisible: isAboutToBeVisible })
-	}
-
 	toggleFormattedList() {
 		let isAboutToBeVisible
 		if (this.state.formattedListVisible === false) {
@@ -1387,7 +1371,6 @@ class KowInnerContainer extends Component {
 			pointTotal: 0,
 			unitStrengthTotal: 0,
 			indexCount: 0,
-			armyDropdownVisible: false,
 			formattedListVisible: false,
 			unitOptionsVisible: false,
 			artefactsVisible: false,
@@ -1417,12 +1400,12 @@ class KowInnerContainer extends Component {
 	render() {
 		let appElement = document.getElementById('app')
 		let selectedArmy = this.state.selectedArmy
+		let armyOptions = []
+		let labelledArmy
 		let i
-		let displayNoneArmyOptions
-		if (this.state.armyDropdownVisible === false) {
-			displayNoneArmyOptions = style['display-none']
-		} else {
-			displayNoneArmyOptions = ''
+		for (i = 0; i < this.props.armies.length; i++) {
+			labelledArmy = { value: this.props.armies[i], label: this.props.armies[i].name }
+			armyOptions.push(labelledArmy)
 		}
 		let displayNoneBottom
 		if (selectedArmy === '') {
@@ -2143,21 +2126,15 @@ class KowInnerContainer extends Component {
 							<h2 className={style['main-title']}>Make a Good Kings of War List</h2>
 						</div>
 						<div className={style['copyright-notice']}>Kings of War is copyrighted by Mantic Entertainment</div>
-						<div
-							onClick={this.toggleArmyDropdown}
-							className={style['army-dropdown-placeholder']}
-						>
-							<span className={style['army-dropdown-placeholder-label']}>
-								Select Army...
-							</span>
-						</div>						
-						<ArmyDropdown
-							armies={this.props.armies}
-							selectedArmy={this.state.selectedArmy}
-							updateSelectedArmy={this.updateSelectedArmy}
-							toggleArmyDropdown={this.toggleArmyDropdown}
-							visible={displayNoneArmyOptions}
-						/>
+						<div className={style['css-remover']}>
+							<Select
+								placeholder="Select Army..."
+								options={armyOptions}
+								isSearchable={false}
+								styles={this.props.dropdownStyle}
+								onChange={this.updateSelectedArmy}
+							/>
+						</div>
 					</div>
 					<div>{display}</div>
 					<Modal

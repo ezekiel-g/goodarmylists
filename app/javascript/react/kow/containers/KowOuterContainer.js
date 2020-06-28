@@ -79,13 +79,61 @@ class KowOuterContainer extends Component {
 		.catch(error => console.error(`Error in fetch: ${error.message}`))
 	}
 	render() {
+		let dropdownStyle = {
+		    control: (base, state) => ({
+		        ...base,
+		        bodShadow: 'none',
+		        boxShadow: state.isFocused ? 0 : 0,
+		        cursor: 'pointer',
+		        borderRadius: 0,
+		        border: '1px solid #000000',
+		        '&:hover': { borderColor: '#000000' },
+
+		    }),
+		    option: (styles, { isFocused }) => {
+		        return {
+		            ...styles,
+		            cursor: 'pointer',
+		            backgroundColor: isFocused ? '#D3D3D3' : '#FFFFFF', '&:active': { backgroundColor: '#D3D3D3' },
+		            color: isFocused ? '#000000' : '#000000',
+		            border: isFocused ? '1px solid #000000' : '1px solid #000000',
+		            lineHeight: 2,
+		        }
+		    },
+		    input: styles => ({
+		        ...styles,
+		        color: '#000000',
+		    }),
+		    menu: styles => ({
+		        ...styles,
+		        marginTop: '-1px',
+		        boxShadow: '10px 10px 12px -2px rgba(0,0,0,0.75)',
+		        borderRadius: 0,
+		    }),
+		    singleValue: styles => ({
+		        ...styles,
+		        color: '#949391',
+		    }),
+		    dropdownIndicator: styles => ({
+		    	...styles,
+		    	color: '#949391',
+		    	'&:hover': { color: '#949391' },
+
+		    }),
+		    indicatorSeparator: base => ({
+		        ...base,
+		        display: 'none',
+		    }),
+		}
+
 		return (
-			<div className="sections-container">	
+			<div id="sections-container-id" className="sections-container">	
 				<KowInnerContainer
 					armies={this.state.armies}
 					units={this.state.units}
 					unitOptions={this.state.unitOptions}
 					artefacts={this.state.artefacts}
+					dropdownStyle={dropdownStyle}
 				/>
 			</div>
 		)
