@@ -1,7 +1,7 @@
 import style from '../../../../assets/stylesheets/kow.module.css'
-import React from 'react'
 import cog from '../../../../assets/images/cog.ico'
 // import white_square from '../../../assets/images/white_square.png'
+import React from 'react'
 
 const UnitOptionIcon = props => {
 	let display

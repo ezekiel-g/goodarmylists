@@ -1,7 +1,7 @@
 import style from '../../../../assets/stylesheets/kow.module.css'
-import React from 'react'
 import vase from '../../../../assets/images/vase.ico'
 import white_square from '../../../../assets/images/white_square.png'
+import React from 'react'
 
 const ArtefactIcon = props => {
 	let display
