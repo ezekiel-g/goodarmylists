@@ -78,6 +78,7 @@ class KowOuterContainer extends Component {
 		})
 		.catch(error => console.error(`Error in fetch: ${error.message}`))
 	}
+
 	render() {
 		let dropdownStyle = {
 		    control: (base, state) => ({

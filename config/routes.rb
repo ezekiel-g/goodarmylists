@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   	root 'games#index'
 
   	# devise_for :users
-  	resources :games, path: '', param: :abbreviation, only: [:index, :show]
+  	resources :games, path: '', param: :abbreviation, only: [:index]
   	
   	namespace :api do
 		namespace :v1 do
