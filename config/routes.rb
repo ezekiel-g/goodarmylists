@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 			resources :kow_units, only: [:index]
 			resources :kow_unit_options, only: [:index]	
 			resources :kow_artefacts, only: [:index]
+			resources :wmr_armies, only: [:index]
+			resources :wmr_units, only: [:index]
+			resources :wmr_magic_items, only: [:index]	
+			resources :wmr_spells, only: [:index]
 		end
 	end
 end

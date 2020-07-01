@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_123824) do
+ActiveRecord::Schema.define(version: 2020_07_01_215324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,55 @@ ActiveRecord::Schema.define(version: 2020_06_27_123824) do
     t.bigint "kow_army_id"
     t.index ["game_id"], name: "index_kow_units_on_game_id"
     t.index ["kow_army_id"], name: "index_kow_units_on_kow_army_id"
+  end
+
+  create_table "wmr_armies", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "display_name", null: false
+    t.string "adjective", null: false
+    t.text "special_rules"
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_wmr_armies_on_game_id"
+  end
+
+  create_table "wmr_magic_items", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "display_name", null: false
+    t.string "magic_item_type", null: false
+    t.integer "points", null: false
+    t.string "only_for"
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_wmr_magic_items_on_game_id"
+  end
+
+  create_table "wmr_spells", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "display_name", null: false
+    t.string "to_cast", null: false
+    t.string "range", null: false
+    t.bigint "game_id"
+    t.bigint "wmr_army_id"
+    t.index ["game_id"], name: "index_wmr_spells_on_game_id"
+    t.index ["wmr_army_id"], name: "index_wmr_spells_on_wmr_army_id"
+  end
+
+  create_table "wmr_units", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "display_name", null: false
+    t.string "unit_type", null: false
+    t.integer "unit_type_index", null: false
+    t.string "attacks", null: false
+    t.string "hits", null: false
+    t.string "armor", null: false
+    t.string "command", null: false
+    t.string "unit_size", null: false
+    t.integer "points_per_unit", null: false
+    t.string "min_max", null: false
+    t.text "special_rules"
+    t.bigint "game_id"
+    t.bigint "wmr_army_id"
+    t.index ["game_id"], name: "index_wmr_units_on_game_id"
+    t.index ["wmr_army_id"], name: "index_wmr_units_on_wmr_army_id"
   end
 
 end
