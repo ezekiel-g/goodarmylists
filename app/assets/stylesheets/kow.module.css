@@ -396,7 +396,7 @@ hr {
 	font-weight: bolder;
 }
 
-.artefact-selection-tile {
+.artifact-selection-tile {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
@@ -404,7 +404,7 @@ hr {
 	background-color: #FFFFFF;
 }
 
-.artefact-selections {
+.artifact-selections {
 	text-align: left;
 	line-height: 144%;
 	margin-top: 15px;
@@ -435,7 +435,7 @@ hr {
 	padding: 2px 0px 2px 0px;
 }
 
-.artefact-title {
+.artifact-title {
 	color: #A41F26;
 	font-weight: bolder;
 	margin-bottom: 15px;

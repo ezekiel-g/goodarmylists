@@ -9,9 +9,9 @@ import UnitEntryButton from '../components/UnitEntryButton'
 import AllyButtons from '../components/AllyButtons'
 import UnitEntryNameTile from '../components/UnitEntryNameTile'
 import UnitOptionIcon from '../components/UnitOptionIcon'
-import ArtefactIcon from '../components/ArtefactIcon'
+import ArtifactIcon from '../components/ArtifactIcon'
 import UnitOptionSelectionTile from '../components/UnitOptionSelectionTile'
-import ArtefactSelectionTile from '../components/ArtefactSelectionTile'
+import ArtifactSelectionTile from '../components/ArtifactSelectionTile'
 
 class KowInnerContainer extends Component {
 	constructor(props) {
@@ -20,16 +20,16 @@ class KowInnerContainer extends Component {
 			selectedArmy: '',
 			listedUnits: [],
 			selectedUnitOptions: [],
-			selectedArtefacts: [],
+			selectedArtifacts: [],
 			pointTotal: 0,
 			unitStrengthTotal: 0,
 			indexCount: 0,
 			formattedListVisible: false,
 			unitOptionsVisible: false,
-			artefactsVisible: false,
+			artifactsVisible: false,
 			alliesVisible: false,
 			unitBeingGivenOption: '',
-			unitBeingGivenArtefact: '',
+			unitBeingGivenArtifact: '',
 			unitTypeCountObject: '',
 			unlockObject: '',
 			maximumCount: 3,
@@ -62,17 +62,17 @@ class KowInnerContainer extends Component {
 		this.removeAlliedUnitFromList = this.removeAlliedUnitFromList.bind(this)
 		this.selectUnitOptions = this.selectUnitOptions.bind(this)
 		this.selectAlliedUnitOptions = this.selectAlliedUnitOptions.bind(this)
-		this.selectArtefact = this.selectArtefact.bind(this)
+		this.selectArtifact = this.selectArtifact.bind(this)
 		this.removeUnitOption = this.removeUnitOption.bind(this)
 		this.removeAlliedUnitOption = this.removeAlliedUnitOption.bind(this)
-		this.removeArtefact = this.removeArtefact.bind(this)
+		this.removeArtifact = this.removeArtifact.bind(this)
 		this.toggleFormattedList = this.toggleFormattedList.bind(this)
 		this.toggleUnitOptions = this.toggleUnitOptions.bind(this)
-		this.toggleArtefacts = this.toggleArtefacts.bind(this)
+		this.toggleArtifacts = this.toggleArtifacts.bind(this)
 		this.toggleAllies = this.toggleAllies.bind(this)
 		this.updateUnitBeingGivenOption = this.updateUnitBeingGivenOption.bind(this)
 		this.updateAlliedUnitBeingGivenOption = this.updateAlliedUnitBeingGivenOption.bind(this)
-		this.updateUnitBeingGivenArtefact = this.updateUnitBeingGivenArtefact.bind(this)
+		this.updateUnitBeingGivenArtifact = this.updateUnitBeingGivenArtifact.bind(this)
 		this.clearList = this.clearList.bind(this)
 	}
 
@@ -81,7 +81,7 @@ class KowInnerContainer extends Component {
 		this.clearList()
 	}
 
-	calculatePointTotal(allyString, listedUnitArray, unitOptionArray, artefactArray) {
+	calculatePointTotal(allyString, listedUnitArray, unitOptionArray, artifactArray) {
 		let is_ally = false
 		if (allyString === 'Ally') {
 			is_ally = true
@@ -104,12 +104,12 @@ class KowInnerContainer extends Component {
 		for (i = 0; i < unitOptionArray.length; i++) {
 			pointTotal += parseInt(unitOptionArray[i].unitOption.points)
 		}
-		if (artefactArray === undefined) {
-			artefactArray = this.state.selectedArtefacts
+		if (artifactArray === undefined) {
+			artifactArray = this.state.selectedArtifacts
 		}
 		if (is_ally === false) {
-			for (i = 0; i < artefactArray.length; i++) {
-				pointTotal += parseInt(artefactArray[i].artefact.points)
+			for (i = 0; i < artifactArray.length; i++) {
+				pointTotal += parseInt(artifactArray[i].artifact.points)
 			}
 		}
 		return pointTotal
@@ -645,7 +645,7 @@ class KowInnerContainer extends Component {
 			maximumCount: this.calculateMaximumCount(pointTotal + parseInt(this.state.alliedPointTotal)),
 			alliedGreyedOutUnits: this.determineIfGreyedOut('Ally', this.state.alliedListedUnits, this.state.alliedArmy),
 			unitOptionsVisible: false,
-			artefactsVisible: false,
+			artifactsVisible: false,
 			alliesVisible: false
 		})
 	}
@@ -676,14 +676,14 @@ class KowInnerContainer extends Component {
 			maximumCount: this.calculateMaximumCount(parseInt(this.state.pointTotal) + alliedPointTotal),
 			alliedGreyedOutUnits: this.determineIfGreyedOut('Ally', alliedListedUnits, alliedArmy),
 			unitOptionsVisible: false,
-			artefactsVisible: false
+			artifactsVisible: false
 		})
 	}
 
 	removeUnitFromList(unitObject) {
 		let listedUnits = this.state.listedUnits
 		let selectedUnitOptions = this.state.selectedUnitOptions
-		let selectedArtefacts = this.state.selectedArtefacts
+		let selectedArtifacts = this.state.selectedArtifacts
 		let removedUnitOptionObjects = []
 		let pointTotal
 		let oldPointTotal
@@ -693,7 +693,7 @@ class KowInnerContainer extends Component {
 		let i2
 		let i3
 
-		let actuallyDeleteStuff = (unitArray, unitOptionArray, artefactArray) => {
+		let actuallyDeleteStuff = (unitArray, unitOptionArray, artifactArray) => {
 			let i4
 			for (i4 = unitArray.length - 1; i4 >= 0; i4--) {
 				if (unitArray[i4].index === unitObject.index) {
@@ -706,9 +706,9 @@ class KowInnerContainer extends Component {
 					unitOptionArray.splice(unitOptionArray.indexOf(unitOptionArray[i4]), 1)
 				}
 			}
-			for (i4 = artefactArray.length - 1; i4 >= 0; i4--) {
-				if (artefactArray[i4].index === unitObject.index) {
-					artefactArray.splice(artefactArray.indexOf(artefactArray[i4]), 1)
+			for (i4 = artifactArray.length - 1; i4 >= 0; i4--) {
+				if (artifactArray[i4].index === unitObject.index) {
+					artifactArray.splice(artifactArray.indexOf(artifactArray[i4]), 1)
 				}
 			}				
 		}
@@ -721,35 +721,35 @@ class KowInnerContainer extends Component {
 		for (i = 0; i < selectedUnitOptions.length; i++) {
 			fakeSelectedUnitOptions.push(selectedUnitOptions[i])
 		}
-		let fakeSelectedArtefacts = []
-		for (i = 0; i < selectedArtefacts.length; i++) {
-			fakeSelectedArtefacts.push(selectedArtefacts[i])
+		let fakeSelectedArtifacts = []
+		for (i = 0; i < selectedArtifacts.length; i++) {
+			fakeSelectedArtifacts.push(selectedArtifacts[i])
 		}
 
-		actuallyDeleteStuff(fakeListedUnits, fakeSelectedUnitOptions, fakeSelectedArtefacts)
-		pointTotal = this.calculatePointTotal('Main army', fakeListedUnits, fakeSelectedUnitOptions, fakeSelectedArtefacts)
+		actuallyDeleteStuff(fakeListedUnits, fakeSelectedUnitOptions, fakeSelectedArtifacts)
+		pointTotal = this.calculatePointTotal('Main army', fakeListedUnits, fakeSelectedUnitOptions, fakeSelectedArtifacts)
 		unlockObject = this.subtractUnlocks(fakeListedUnits)
 
 		if ((pointTotal + parseInt(this.state.alliedPointTotal)) / 4 < parseInt(this.state.alliedPointTotal)) {
 			listedUnits = this.state.listedUnits
 			selectedUnitOptions = this.state.selectedUnitOptions
-			selectedArtefacts = this.state.selectedArtefacts				
+			selectedArtifacts = this.state.selectedArtifacts				
 		} else {
 			if (parseInt(unitObject.unit.unlocking_class) > 0) {
 				listedUnits = fakeListedUnits
 				selectedUnitOptions = fakeSelectedUnitOptions
-				selectedArtefacts = fakeSelectedArtefacts
+				selectedArtifacts = fakeSelectedArtifacts
 				if (unlockObject.troopUnlocks < 0) {
 					listedUnits = this.state.listedUnits
 					selectedUnitOptions = this.state.selectedUnitOptions
-					selectedArtefacts = this.state.selectedArtefacts
+					selectedArtifacts = this.state.selectedArtifacts
 				}
 				if (this.state.unlockObject.heroUnlocks <= 0) {
 					if (this.state.unlockObject.unlocksFromLargeInfantry <= 0) {
 						if (this.state.unlockObject.unlocksFromRegiments <= 0) {
 							listedUnits = this.state.listedUnits
 							selectedUnitOptions = this.state.selectedUnitOptions
-							selectedArtefacts = this.state.selectedArtefacts						
+							selectedArtifacts = this.state.selectedArtifacts						
 						}
 					}
 				}
@@ -758,7 +758,7 @@ class KowInnerContainer extends Component {
 						if (this.state.unlockObject.unlocksFromRegiments <= 0) {
 							listedUnits = this.state.listedUnits
 							selectedUnitOptions = this.state.selectedUnitOptions
-							selectedArtefacts = this.state.selectedArtefacts						
+							selectedArtifacts = this.state.selectedArtifacts						
 						}
 					}
 				}
@@ -767,21 +767,21 @@ class KowInnerContainer extends Component {
 						if (this.state.unlockObject.unlocksFromRegiments <= 0) {
 							listedUnits = this.state.listedUnits
 							selectedUnitOptions = this.state.selectedUnitOptions
-							selectedArtefacts = this.state.selectedArtefacts						
+							selectedArtifacts = this.state.selectedArtifacts						
 						}
 					}
 					if (this.state.unlockObject.unlocksFromLargeInfantry <= 0) {
 						if (this.state.unlockObject.unlocksFromRegiments <= 0) {
 							listedUnits = this.state.listedUnits
 							selectedUnitOptions = this.state.selectedUnitOptions
-							selectedArtefacts = this.state.selectedArtefacts						
+							selectedArtifacts = this.state.selectedArtifacts						
 						}
 					}
 				}		
 			} else {
 				listedUnits = fakeListedUnits
 				selectedUnitOptions = fakeSelectedUnitOptions
-				selectedArtefacts = fakeSelectedArtefacts
+				selectedArtifacts = fakeSelectedArtifacts
 			}
 		}
 
@@ -792,17 +792,17 @@ class KowInnerContainer extends Component {
 		) {
 			listedUnits = this.state.listedUnits
 			selectedUnitOptions = this.state.selectedUnitOptions
-			selectedArtefacts = this.state.selectedArtefacts			
+			selectedArtifacts = this.state.selectedArtifacts			
 		}
 
-		oldPointTotal = this.calculatePointTotal('Main army', this.state.listedUnits, this.state.selectedUnitOptions, this.state.selectedArtefacts)
+		oldPointTotal = this.calculatePointTotal('Main army', this.state.listedUnits, this.state.selectedUnitOptions, this.state.selectedArtifacts)
 		oldAlliedPointTotal = this.calculatePointTotal('Ally', this.state.alliedListedUnits, this.state.alliedSelectedUnitOptions)
 
 		if (listedUnits.length < 1) {
 			this.clearList()
 		}
 
-		pointTotal = this.calculatePointTotal('Main army', listedUnits, selectedUnitOptions, selectedArtefacts)
+		pointTotal = this.calculatePointTotal('Main army', listedUnits, selectedUnitOptions, selectedArtifacts)
 		let alliedPointTotal = this.calculatePointTotal('Ally', this.state.alliedListedUnits, this.state.alliedSelectedUnitOptions)
 		let maximumCountBefore = this.calculateMaximumCount(oldPointTotal + oldAlliedPointTotal)
 		let maximumCountAfter = this.calculateMaximumCount(pointTotal + alliedPointTotal)
@@ -833,8 +833,8 @@ class KowInnerContainer extends Component {
 		this.setState({
 			listedUnits: listedUnits,
 			selectedUnitOptions: selectedUnitOptions,
-			selectedArtefacts: selectedArtefacts,
-			pointTotal: this.calculatePointTotal('Main army', listedUnits, selectedUnitOptions, selectedArtefacts),
+			selectedArtifacts: selectedArtifacts,
+			pointTotal: this.calculatePointTotal('Main army', listedUnits, selectedUnitOptions, selectedArtifacts),
 			unitStrengthTotal: this.calculateUnitStrengthTotal('Main army', listedUnits, selectedUnitOptions),
 			unitTypeCountObject: this.calculateUnitTypeCounts(listedUnits),
 			unlockObject: this.subtractUnlocks(listedUnits),
@@ -954,7 +954,7 @@ class KowInnerContainer extends Component {
 
 	selectUnitOptions(unitObject, highlightedUnitOptions) {
 		let selectedUnitOptions = []
-		let selectedArtefacts = this.state.selectedArtefacts
+		let selectedArtifacts = this.state.selectedArtifacts
 		let i
 		for (i = 0; i < highlightedUnitOptions.length; i++) {
 			highlightedUnitOptions[i] = {
@@ -978,9 +978,9 @@ class KowInnerContainer extends Component {
 				highlightedUnitOptions[i].unitOption.display_name === 'Raid Leader' ||
 				highlightedUnitOptions[i].unitOption.display_name === 'Path of Fire'
 			) {
-				for (i2 = 0; i2 < selectedArtefacts.length; i2++) {
-					if (selectedArtefacts[i].index === unitObject.index) {
-						selectedArtefacts.splice(selectedArtefacts.indexOf(selectedArtefacts[i]), 1)
+				for (i2 = 0; i2 < selectedArtifacts.length; i2++) {
+					if (selectedArtifacts[i].index === unitObject.index) {
+						selectedArtifacts.splice(selectedArtifacts.indexOf(selectedArtifacts[i]), 1)
 					}
 				}
 			}
@@ -1003,8 +1003,8 @@ class KowInnerContainer extends Component {
 
 		this.setState({
 			selectedUnitOptions: selectedUnitOptions,
-			selectedArtefacts: selectedArtefacts,
-			pointTotal: this.calculatePointTotal('Main army', this.state.listedUnits, selectedUnitOptions, selectedArtefacts),
+			selectedArtifacts: selectedArtifacts,
+			pointTotal: this.calculatePointTotal('Main army', this.state.listedUnits, selectedUnitOptions, selectedArtifacts),
 			unitStrengthTotal: this.calculateUnitStrengthTotal('Main army', this.state.listedUnits, selectedUnitOptions),
 			unitBeingGivenOption: '',
 			alliedGreyedOutUnits: this.determineIfGreyedOut('Ally', this.state.alliedListedUnits, this.state.alliedArmy)
@@ -1052,73 +1052,73 @@ class KowInnerContainer extends Component {
 		this.toggleUnitOptions()
 	}
 
-	selectArtefact(unitObject, artefact) {
-		let selectedArtefacts = this.state.selectedArtefacts
+	selectArtifact(unitObject, artifact) {
+		let selectedArtifacts = this.state.selectedArtifacts
 		let selectedUnitOptions = this.state.selectedUnitOptions
-		let newArtefactSelection = { index: unitObject.index, artefact: artefact }
-		let artefactToRemoveIfSame
-		let artefactToRemoveIfDifferent
-		let artefactsToKeep = []
+		let newArtifactSelection = { index: unitObject.index, artifact: artifact }
+		let artifactToRemoveIfSame
+		let artifactToRemoveIfDifferent
+		let artifactsToKeep = []
 		let i
-		for (i = 0; i < selectedArtefacts.length; i++) {
+		for (i = 0; i < selectedArtifacts.length; i++) {
 			if (
-				parseInt(selectedArtefacts[i].artefact.id) === parseInt(newArtefactSelection.artefact.id) ||
-				selectedArtefacts[i].artefact.display_name === newArtefactSelection.artefact.display_name
+				parseInt(selectedArtifacts[i].artifact.id) === parseInt(newArtifactSelection.artifact.id) ||
+				selectedArtifacts[i].artifact.display_name === newArtifactSelection.artifact.display_name
 			) {
-				artefactToRemoveIfSame = selectedArtefacts[i]
+				artifactToRemoveIfSame = selectedArtifacts[i]
 			}
-			if (selectedArtefacts[i].index === newArtefactSelection.index) {
-				artefactToRemoveIfDifferent = selectedArtefacts[i]
+			if (selectedArtifacts[i].index === newArtifactSelection.index) {
+				artifactToRemoveIfDifferent = selectedArtifacts[i]
 			}			
 		}
 		if (
-			artefactToRemoveIfSame !== undefined &&
-			artefactToRemoveIfDifferent !== undefined &&
-			parseInt(artefactToRemoveIfSame.artefact.id) === parseInt(artefactToRemoveIfDifferent.artefact.id)
+			artifactToRemoveIfSame !== undefined &&
+			artifactToRemoveIfDifferent !== undefined &&
+			parseInt(artifactToRemoveIfSame.artifact.id) === parseInt(artifactToRemoveIfDifferent.artifact.id)
 		) {
-			selectedArtefacts = this.state.selectedArtefacts
+			selectedArtifacts = this.state.selectedArtifacts
 		} else {
-			if (artefactToRemoveIfSame === undefined &&	artefactToRemoveIfDifferent === undefined				
+			if (artifactToRemoveIfSame === undefined &&	artifactToRemoveIfDifferent === undefined				
 			) {
-				selectedArtefacts = this.state.selectedArtefacts
+				selectedArtifacts = this.state.selectedArtifacts
 			}
-			if (artefactToRemoveIfSame !== undefined && artefactToRemoveIfDifferent === undefined) {
-				for (i = 0; i < selectedArtefacts.length; i++) {
+			if (artifactToRemoveIfSame !== undefined && artifactToRemoveIfDifferent === undefined) {
+				for (i = 0; i < selectedArtifacts.length; i++) {
 					if (
-						parseInt(selectedArtefacts[i].artefact.id) !== parseInt(newArtefactSelection.artefact.id) &&
-						selectedArtefacts[i].artefact.display_name !== newArtefactSelection.artefact.display_name
+						parseInt(selectedArtifacts[i].artifact.id) !== parseInt(newArtifactSelection.artifact.id) &&
+						selectedArtifacts[i].artifact.display_name !== newArtifactSelection.artifact.display_name
 					) {
-						artefactsToKeep.push(selectedArtefacts[i])
+						artifactsToKeep.push(selectedArtifacts[i])
 					}
 				}
-				selectedArtefacts = artefactsToKeep
+				selectedArtifacts = artifactsToKeep
 			}
-			if (artefactToRemoveIfSame === undefined &&	artefactToRemoveIfDifferent !== undefined			
+			if (artifactToRemoveIfSame === undefined &&	artifactToRemoveIfDifferent !== undefined			
 			) {
-				for (i = 0; i < selectedArtefacts.length; i++) {
-					if (selectedArtefacts[i].index !== newArtefactSelection.index) {
-						artefactsToKeep.push(selectedArtefacts[i])
+				for (i = 0; i < selectedArtifacts.length; i++) {
+					if (selectedArtifacts[i].index !== newArtifactSelection.index) {
+						artifactsToKeep.push(selectedArtifacts[i])
 					}
 				}
-				selectedArtefacts = artefactsToKeep
+				selectedArtifacts = artifactsToKeep
 			}
-			if (artefactToRemoveIfSame !== undefined &&	artefactToRemoveIfDifferent !== undefined	
+			if (artifactToRemoveIfSame !== undefined &&	artifactToRemoveIfDifferent !== undefined	
 			) {
-				for (i = 0; i < selectedArtefacts.length; i++) {
+				for (i = 0; i < selectedArtifacts.length; i++) {
 					if (
-						selectedArtefacts[i].index !== newArtefactSelection.index &&
-						parseInt(selectedArtefacts[i].artefact.id) !== parseInt(newArtefactSelection.artefact.id)
+						selectedArtifacts[i].index !== newArtifactSelection.index &&
+						parseInt(selectedArtifacts[i].artifact.id) !== parseInt(newArtifactSelection.artifact.id)
 					) {
-						artefactsToKeep.push(selectedArtefacts[i])
+						artifactsToKeep.push(selectedArtifacts[i])
 					}
 				}				
-				selectedArtefacts = artefactsToKeep
+				selectedArtifacts = artifactsToKeep
 			}
-			selectedArtefacts.push(newArtefactSelection)
+			selectedArtifacts.push(newArtifactSelection)
 		}
 		for (i = 0; i < selectedUnitOptions.length; i++) {
 			if (
-				selectedUnitOptions[i].index === newArtefactSelection.index && (
+				selectedUnitOptions[i].index === newArtifactSelection.index && (
 					selectedUnitOptions[i].unitOption.display_name === 'Horn of Heroes' ||
 					selectedUnitOptions[i].unitOption.display_name === 'Guiding Flame' ||
 					selectedUnitOptions[i].unitOption.display_name === 'Horn of Ocean\'s Fury' ||
@@ -1134,13 +1134,13 @@ class KowInnerContainer extends Component {
 
 		this.setState({
 			selectedUnitOptions: selectedUnitOptions,
-			selectedArtefacts: selectedArtefacts,
-			pointTotal: this.calculatePointTotal('Main army', this.state.listedUnits, selectedUnitOptions, selectedArtefacts),
+			selectedArtifacts: selectedArtifacts,
+			pointTotal: this.calculatePointTotal('Main army', this.state.listedUnits, selectedUnitOptions, selectedArtifacts),
 			unitStrengthTotal: this.calculateUnitStrengthTotal('Main army', this.state.listedUnits, selectedUnitOptions),
-			unitBeingGivenArtefact: '',
+			unitBeingGivenArtifact: '',
 			alliedGreyedOutUnits: this.determineIfGreyedOut('Ally', this.state.alliedListedUnits, this.state.alliedArmy)
 		})
-		this.toggleArtefacts()
+		this.toggleArtifacts()
 	}
 
 	removeUnitOption(unitOptionObject) {
@@ -1189,24 +1189,24 @@ class KowInnerContainer extends Component {
 		})
 	}
 
-	removeArtefact(artefactObject) {
-		let selectedArtefacts = []
+	removeArtifact(artifactObject) {
+		let selectedArtifacts = []
 		let pointTotal
 		let i
-		for (i = 0; i < this.state.selectedArtefacts.length; i++) {
-			if (this.state.selectedArtefacts[i].index !== artefactObject.index) {
-				selectedArtefacts.push(this.state.selectedArtefacts[i])
+		for (i = 0; i < this.state.selectedArtifacts.length; i++) {
+			if (this.state.selectedArtifacts[i].index !== artifactObject.index) {
+				selectedArtifacts.push(this.state.selectedArtifacts[i])
 			}
 		}
 
-		pointTotal = this.calculatePointTotal('Main army', this.state.listedUnits, this.state.selectedUnitOptions, selectedArtefacts)
+		pointTotal = this.calculatePointTotal('Main army', this.state.listedUnits, this.state.selectedUnitOptions, selectedArtifacts)
 		if ((pointTotal + parseInt(this.state.alliedPointTotal)) / 4 < parseInt(this.state.alliedPointTotal)) {
-			selectedArtefacts = this.state.selectedArtefacts
+			selectedArtifacts = this.state.selectedArtifacts
 		}
 
 		this.setState({
-			selectedArtefacts: selectedArtefacts,
-			pointTotal: this.calculatePointTotal('Main army', this.state.listedUnits, this.state.selectedUnitOptions, selectedArtefacts),
+			selectedArtifacts: selectedArtifacts,
+			pointTotal: this.calculatePointTotal('Main army', this.state.listedUnits, this.state.selectedUnitOptions, selectedArtifacts),
 			alliedGreyedOutUnits: this.determineIfGreyedOut('Ally', this.state.alliedListedUnits, this.state.alliedArmy)
 		})
 	}
@@ -1233,13 +1233,13 @@ class KowInnerContainer extends Component {
 		}
 	}
 
-	toggleArtefacts() {
-		if (this.state.artefactsVisible === false) {
-			this.setState({ artefactsVisible: true })
+	toggleArtifacts() {
+		if (this.state.artifactsVisible === false) {
+			this.setState({ artifactsVisible: true })
 		} else {
 			this.setState({
-				artefactsVisible: false,
-				unitBeingGivenArtefact: ''
+				artifactsVisible: false,
+				unitBeingGivenArtifact: ''
 			})
 		}
 	}
@@ -1267,25 +1267,25 @@ class KowInnerContainer extends Component {
 		this.toggleUnitOptions()
 	}
 
-	updateUnitBeingGivenArtefact(unit) {
-		this.setState({ unitBeingGivenArtefact: unit })
-		this.toggleArtefacts()
+	updateUnitBeingGivenArtifact(unit) {
+		this.setState({ unitBeingGivenArtifact: unit })
+		this.toggleArtifacts()
 	}
 
 	clearList() {
 		this.setState({
 			listedUnits: [],
 			selectedUnitOptions: [],
-			selectedArtefacts: [],
+			selectedArtifacts: [],
 			pointTotal: 0,
 			unitStrengthTotal: 0,
 			indexCount: 0,
 			formattedListVisible: false,
 			unitOptionsVisible: false,
-			artefactsVisible: false,
+			artifactsVisible: false,
 			alliesVisible: false,
 			unitBeingGivenOption: '',
-			unitBeingGivenArtefact: '',
+			unitBeingGivenArtifact: '',
 			unitTypeCountObject: '',
 			unlockObject: '',
 			maximumCount: 3,
@@ -1323,7 +1323,7 @@ class KowInnerContainer extends Component {
 			displayNoneBottom = ''
 		}
 		let unitOptionSelectionTile
-		let artefactSelectionTile
+		let artifactSelectionTile
 		let clearListDiv
 		let unitEntryButtonTitle
 		let unitEntryButtonDisplay
@@ -1446,7 +1446,7 @@ class KowInnerContainer extends Component {
 				listedUnitsThatCanHaveOptions.push(this.state.listedUnits[i])
 			}
 		}
-		let listedUnitsThatCanHaveArtefacts = []
+		let listedUnitsThatCanHaveArtifacts = []
 		for (i = 0; i < this.state.listedUnits.length; i++) {
 			if (
 				this.state.listedUnits[i].unit.unit_type !== 'War Engine' &&
@@ -1454,7 +1454,7 @@ class KowInnerContainer extends Component {
 				this.state.listedUnits[i].unit.unit_type !== 'Titan' && 
 				parseInt(this.state.listedUnits[i].unit.limited_n) === 0
 			) {
-				listedUnitsThatCanHaveArtefacts.push(this.state.listedUnits[i])
+				listedUnitsThatCanHaveArtifacts.push(this.state.listedUnits[i])
 			}
 
 		}
@@ -1492,15 +1492,15 @@ class KowInnerContainer extends Component {
 					/>
 				</div>
 		}
-		if (this.state.artefactsVisible) {
-			artefactSelectionTile = 
-				<div className={style['artefact-selection-tile']}>
-					<ArtefactSelectionTile
-						unitObject={this.state.unitBeingGivenArtefact}
-						selectedArtefacts={this.state.selectedArtefacts}
-						artefacts={this.props.artefacts}
-						selectArtefact={this.selectArtefact}
-						toggleArtefacts={this.toggleArtefacts}
+		if (this.state.artifactsVisible) {
+			artifactSelectionTile = 
+				<div className={style['artifact-selection-tile']}>
+					<ArtifactSelectionTile
+						unitObject={this.state.unitBeingGivenArtifact}
+						selectedArtifacts={this.state.selectedArtifacts}
+						artifacts={this.props.artifacts}
+						selectArtifact={this.selectArtifact}
+						toggleArtifacts={this.toggleArtifacts}
 						pointTotal={parseInt(this.state.pointTotal)}
 						alliedPointTotal={parseInt(this.state.alliedPointTotal)}
 					/>
@@ -1607,12 +1607,12 @@ class KowInnerContainer extends Component {
 						className={style['list-output-side-row']}
 					>
 						<div className={style['list-entry-div']}>
-							<ArtefactIcon
+							<ArtifactIcon
 								key={unitObject.index + 20000}
 								id={parseInt(unitObject.unit.id)}
 								unitObject={unitObject}
-								listedUnitsThatCanHaveArtefacts={listedUnitsThatCanHaveArtefacts}
-								updateUnitBeingGivenArtefact={this.updateUnitBeingGivenArtefact}
+								listedUnitsThatCanHaveArtifacts={listedUnitsThatCanHaveArtifacts}
+								updateUnitBeingGivenArtifact={this.updateUnitBeingGivenArtifact}
 							/>
 							<UnitOptionIcon
 								key={unitObject.index}
@@ -1629,9 +1629,9 @@ class KowInnerContainer extends Component {
 							unitObject={unitObject}
 							alliedArmy={this.state.alliedArmy}
 							selectedUnitOptions={this.state.selectedUnitOptions}
-							selectedArtefacts={this.state.selectedArtefacts}
+							selectedArtifacts={this.state.selectedArtifacts}
 							removeUnitOption={this.removeUnitOption}
-							removeArtefact={this.removeArtefact}
+							removeArtifact={this.removeArtifact}
 							removeUnitFromList={this.removeUnitFromList}
 						/>
 					</div>
@@ -1646,12 +1646,12 @@ class KowInnerContainer extends Component {
 						className={style['list-output-side-row']}
 					>
 						<div className={style['list-entry-div']}>
-							<ArtefactIcon
+							<ArtifactIcon
 								key={unitObject.index + 20000}
 								id={parseInt(unitObject.unit.id)}
 								unitObject={unitObject}
-								listedUnitsThatCanHaveArtefacts={listedUnitsThatCanHaveArtefacts}
-								updateUnitBeingGivenArtefact={this.updateUnitBeingGivenArtefact}
+								listedUnitsThatCanHaveArtifacts={listedUnitsThatCanHaveArtifacts}
+								updateUnitBeingGivenArtifact={this.updateUnitBeingGivenArtifact}
 							/>
 							<UnitOptionIcon
 								key={unitObject.index}
@@ -1668,9 +1668,9 @@ class KowInnerContainer extends Component {
 							unitObject={unitObject}
 							alliedArmy={this.state.alliedArmy}
 							selectedUnitOptions={this.state.selectedUnitOptions}
-							selectedArtefacts={this.state.selectedArtefacts}
+							selectedArtifacts={this.state.selectedArtifacts}
 							removeUnitOption={this.removeUnitOption}
-							removeArtefact={this.removeArtefact}
+							removeArtifact={this.removeArtifact}
 							removeUnitFromList={this.removeUnitFromList}
 						/>
 					</div>
@@ -1685,12 +1685,12 @@ class KowInnerContainer extends Component {
 						className={style['list-output-side-row']}
 					>
 						<div className={style['list-entry-div']}>
-							<ArtefactIcon
+							<ArtifactIcon
 								key={unitObject.index + 20000}
 								id={parseInt(unitObject.unit.id)}
 								unitObject={unitObject}
-								listedUnitsThatCanHaveArtefacts={listedUnitsThatCanHaveArtefacts}
-								updateUnitBeingGivenArtefact={this.updateUnitBeingGivenArtefact}
+								listedUnitsThatCanHaveArtifacts={listedUnitsThatCanHaveArtifacts}
+								updateUnitBeingGivenArtifact={this.updateUnitBeingGivenArtifact}
 							/>
 							<UnitOptionIcon
 								key={unitObject.index}
@@ -1707,9 +1707,9 @@ class KowInnerContainer extends Component {
 							unitObject={unitObject}
 							alliedArmy={this.state.alliedArmy}
 							selectedUnitOptions={this.state.selectedUnitOptions}
-							selectedArtefacts={this.state.selectedArtefacts}
+							selectedArtifacts={this.state.selectedArtifacts}
 							removeUnitOption={this.removeUnitOption}
-							removeArtefact={this.removeArtefact}
+							removeArtifact={this.removeArtifact}
 							removeUnitFromList={this.removeUnitFromList}
 						/>
 					</div>
@@ -1724,12 +1724,12 @@ class KowInnerContainer extends Component {
 						className={style['list-output-side-row']}
 					>
 						<div className={style['list-entry-div']}>
-							<ArtefactIcon
+							<ArtifactIcon
 								key={unitObject.index + 20000}
 								id={parseInt(unitObject.unit.id)}
 								unitObject={unitObject}
-								listedUnitsThatCanHaveArtefacts={listedUnitsThatCanHaveArtefacts}
-								updateUnitBeingGivenArtefact={this.updateUnitBeingGivenArtefact}
+								listedUnitsThatCanHaveArtifacts={listedUnitsThatCanHaveArtifacts}
+								updateUnitBeingGivenArtifact={this.updateUnitBeingGivenArtifact}
 							/>
 							<UnitOptionIcon
 								key={unitObject.index}
@@ -1746,9 +1746,9 @@ class KowInnerContainer extends Component {
 							unitObject={unitObject}
 							alliedArmy={this.state.alliedArmy}
 							selectedUnitOptions={this.state.selectedUnitOptions}
-							selectedArtefacts={this.state.selectedArtefacts}
+							selectedArtifacts={this.state.selectedArtifacts}
 							removeUnitOption={this.removeUnitOption}
-							removeArtefact={this.removeArtefact}
+							removeArtifact={this.removeArtifact}
 							removeUnitFromList={this.removeUnitFromList}
 						/>
 					</div>
@@ -1763,12 +1763,12 @@ class KowInnerContainer extends Component {
 						className={style['list-output-side-row']}
 					>
 						<div className={style['list-entry-div']}>
-							<ArtefactIcon
+							<ArtifactIcon
 								key={unitObject.index + 300000}
 								id={parseInt(unitObject.unit.id)}
 								no={'no'}
-								listedUnitsThatCanHaveArtefacts={listedUnitsThatCanHaveArtefacts}
-								updateUnitBeingGivenArtefact={this.updateUnitBeingGivenArtefact}
+								listedUnitsThatCanHaveArtifacts={listedUnitsThatCanHaveArtifacts}
+								updateUnitBeingGivenArtifact={this.updateUnitBeingGivenArtifact}
 							/>
 							<UnitOptionIcon
 								key={unitObject.index + 250000}
@@ -1800,12 +1800,12 @@ class KowInnerContainer extends Component {
 						className={style['list-output-side-row']}
 					>
 						<div className={style['list-entry-div']}>
-							<ArtefactIcon
+							<ArtifactIcon
 								key={unitObject.index + 300000}
 								id={parseInt(unitObject.unit.id)}
 								no={'no'}
-								listedUnitsThatCanHaveArtefacts={listedUnitsThatCanHaveArtefacts}
-								updateUnitBeingGivenArtefact={this.updateUnitBeingGivenArtefact}
+								listedUnitsThatCanHaveArtifacts={listedUnitsThatCanHaveArtifacts}
+								updateUnitBeingGivenArtifact={this.updateUnitBeingGivenArtifact}
 							/>
 							<UnitOptionIcon
 								key={unitObject.index + 250000}
@@ -1837,12 +1837,12 @@ class KowInnerContainer extends Component {
 						className={style['list-output-side-row']}
 					>
 						<div className={style['list-entry-div']}>
-							<ArtefactIcon
+							<ArtifactIcon
 								key={unitObject.index + 300000}
 								id={parseInt(unitObject.unit.id)}
 								no={'no'}
-								listedUnitsThatCanHaveArtefacts={listedUnitsThatCanHaveArtefacts}
-								updateUnitBeingGivenArtefact={this.updateUnitBeingGivenArtefact}
+								listedUnitsThatCanHaveArtifacts={listedUnitsThatCanHaveArtifacts}
+								updateUnitBeingGivenArtifact={this.updateUnitBeingGivenArtifact}
 							/>
 							<UnitOptionIcon
 								key={unitObject.index + 250000}
@@ -1874,12 +1874,12 @@ class KowInnerContainer extends Component {
 						className={style['list-output-side-row']}
 					>
 						<div className={style['list-entry-div']}>
-							<ArtefactIcon
+							<ArtifactIcon
 								key={unitObject.index + 300000}
 								id={parseInt(unitObject.unit.id)}
 								no={'no'}
-								listedUnitsThatCanHaveArtefacts={listedUnitsThatCanHaveArtefacts}
-								updateUnitBeingGivenArtefact={this.updateUnitBeingGivenArtefact}
+								listedUnitsThatCanHaveArtifacts={listedUnitsThatCanHaveArtifacts}
+								updateUnitBeingGivenArtifact={this.updateUnitBeingGivenArtifact}
 							/>
 							<UnitOptionIcon
 								key={unitObject.index + 250000}
@@ -1942,13 +1942,13 @@ class KowInnerContainer extends Component {
 			)
 			alliedPointPercentage = alliedPointPercentageBeforeToFixed.toFixed(1)
 		}
-		if (unitOptionSelectionTile !== undefined && artefactSelectionTile === undefined) {
+		if (unitOptionSelectionTile !== undefined && artifactSelectionTile === undefined) {
 			listOutputSide = unitOptionSelectionTile
 		}
-		if (unitOptionSelectionTile === undefined && artefactSelectionTile !== undefined) {
-			listOutputSide = artefactSelectionTile
+		if (unitOptionSelectionTile === undefined && artifactSelectionTile !== undefined) {
+			listOutputSide = artifactSelectionTile
 		}
- 		if (unitOptionSelectionTile === undefined && artefactSelectionTile === undefined) {
+ 		if (unitOptionSelectionTile === undefined && artifactSelectionTile === undefined) {
 			if (this.state.alliedListedUnits.length > 0) {
 				listOutputSide =
 					<div>
@@ -2061,7 +2061,7 @@ class KowInnerContainer extends Component {
 							listedUnitsThirdQuarter={listedUnitsThirdQuarter}
 							listedUnitsBottom={listedUnitsBottom}
 							selectedUnitOptions={this.state.selectedUnitOptions}
-							selectedArtefacts={this.state.selectedArtefacts}
+							selectedArtifacts={this.state.selectedArtifacts}
 							pointTotal={parseInt(this.state.pointTotal)}
 							unitStrengthTotal={grandUnitStrengthTotal}
 							unitCount={unitCount}

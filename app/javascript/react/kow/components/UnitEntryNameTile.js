@@ -50,23 +50,23 @@ const UnitEntryNameTile = props => {
 		})
 	}
 
-	let artefactText
-	if (props.selectedArtefacts) {
-		let allSelectedArtefacts = props.selectedArtefacts
-		let selectedArtefactArray = []
-		for (i = 0; i < allSelectedArtefacts.length; i++) {
-			if (allSelectedArtefacts[i].index === props.unitObject.index) {
-				selectedArtefactArray.push(allSelectedArtefacts[i])
+	let artifactText
+	if (props.selectedArtifacts) {
+		let allSelectedArtifacts = props.selectedArtifacts
+		let selectedArtifactArray = []
+		for (i = 0; i < allSelectedArtifacts.length; i++) {
+			if (allSelectedArtifacts[i].index === props.unitObject.index) {
+				selectedArtifactArray.push(allSelectedArtifacts[i])
 			}
 		}
-		if (selectedArtefactArray.length > 0) {
-			artefactText =
+		if (selectedArtifactArray.length > 0) {
+			artifactText =
 				<div>
 					<span
-						onClick={() => props.removeArtefact(selectedArtefactArray[0], props.alliedArmy)}
+						onClick={() => props.removeArtifact(selectedArtifactArray[0], props.alliedArmy)}
 						className={style['unit-option-entry-label']}
 					>
-						{' -- '}{selectedArtefactArray[selectedArtefactArray.length - 1].artefact.display_name}
+						{' -- '}{selectedArtifactArray[selectedArtifactArray.length - 1].artifact.display_name}
 					</span>
 				</div>
 		}
@@ -85,7 +85,7 @@ const UnitEntryNameTile = props => {
 					{props.unitObject.unit.display_name}
 				</span>
 			</div>
-				{artefactText}
+				{artifactText}
 				{nonSpellText}
 				{spellText}
 		</div>

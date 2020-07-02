@@ -1,9 +1,9 @@
 import style from '../../../../assets/stylesheets/kow.module.css'
 import React from 'react'
 
-const ArtefactSelectionLabel = props => {
+const ArtifactSelectionLabel = props => {
 	let extraSpace
-	if (parseInt(props.artefact.points) < 10) {
+	if (parseInt(props.artifact.points) < 10) {
 		extraSpace = <span className={style['hidden']}>{'_'}</span>
 	}
 
@@ -13,14 +13,14 @@ const ArtefactSelectionLabel = props => {
 			<div className={style['unit-option-selection-tile-row']}>
 				<div className={style['unit-option-label-div']}>
 					{extraSpace}
-					<span className={style['unit-option-points-label']}>{parseInt(props.artefact.points)}</span>
+					<span className={style['unit-option-points-label']}>{parseInt(props.artifact.points)}</span>
 				</div>
 				<div className={style['unit-option-label-div']}>
 					<span
-						onClick={() => props.selectArtefact(props.unitObject, props.artefact)}
+						onClick={() => props.selectArtifact(props.unitObject, props.artifact)}
 						className={style['unit-option-selection-label']}
 					>
-						{props.artefact.display_name}
+						{props.artifact.display_name}
 					</span>
 				</div>
 			</div>
@@ -29,11 +29,11 @@ const ArtefactSelectionLabel = props => {
 			<div className={style['unit-option-selection-tile-row-greyed-out']}>
 				<div className={style['unit-option-label-div']}>
 					{extraSpace}
-					<span>{parseInt(props.artefact.points)}</span>
+					<span>{parseInt(props.artifact.points)}</span>
 				</div>
 				<div className={style['unit-option-label-div']}>
 					<span>
-						{props.artefact.display_name}
+						{props.artifact.display_name}
 					</span>
 				</div>
 			</div>	
@@ -44,4 +44,4 @@ const ArtefactSelectionLabel = props => {
 	)
 }
 
-export default ArtefactSelectionLabel
+export default ArtifactSelectionLabel

@@ -12,7 +12,7 @@ const FormattedList = props => {
 				id={unitObject.index}
 				unitObject={unitObject}
 				selectedUnitOptions={props.selectedUnitOptions}
-				selectedArtefacts={props.selectedArtefacts}
+				selectedArtifacts={props.selectedArtifacts}
 			/>
 		)
 	})
@@ -23,7 +23,7 @@ const FormattedList = props => {
 				id={unitObject.index}
 				unitObject={unitObject}
 				selectedUnitOptions={props.selectedUnitOptions}
-				selectedArtefacts={props.selectedArtefacts}
+				selectedArtifacts={props.selectedArtifacts}
 			/>
 		)
 	})
@@ -34,7 +34,7 @@ const FormattedList = props => {
 				id={unitObject.index}
 				unitObject={unitObject}
 				selectedUnitOptions={props.selectedUnitOptions}
-				selectedArtefacts={props.selectedArtefacts}
+				selectedArtifacts={props.selectedArtifacts}
 			/>
 		)
 	})
@@ -45,7 +45,7 @@ const FormattedList = props => {
 				id={unitObject.index}
 				unitObject={unitObject}
 				selectedUnitOptions={props.selectedUnitOptions}
-				selectedArtefacts={props.selectedArtefacts}
+				selectedArtifacts={props.selectedArtifacts}
 			/>
 		)
 	})
