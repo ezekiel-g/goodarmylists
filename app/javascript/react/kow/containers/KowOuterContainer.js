@@ -9,7 +9,7 @@ class KowOuterContainer extends Component {
 			armies: [],
 			units: [],
 			unitOptions: [],
-			artefacts: []
+			artifacts: []
 		}
 	}
 
@@ -62,7 +62,7 @@ class KowOuterContainer extends Component {
 		})
 		.catch(error => console.error(`Error in fetch: ${error.message}`))
 
-		fetch('/api/v1/kow_artefacts')
+		fetch('/api/v1/kow_artifacts')
 		.then(response => {
 			if (response.ok) {
 				return response
@@ -74,7 +74,7 @@ class KowOuterContainer extends Component {
 		})
 		.then(response => response.json())
 		.then(body => {
-			this.setState({ artefacts: body })
+			this.setState({ artifacts: body })
 		})
 		.catch(error => console.error(`Error in fetch: ${error.message}`))
 	}
@@ -133,7 +133,7 @@ class KowOuterContainer extends Component {
 					armies={this.state.armies}
 					units={this.state.units}
 					unitOptions={this.state.unitOptions}
-					artefacts={this.state.artefacts}
+					artifacts={this.state.artifacts}
 					dropdownStyle={dropdownStyle}
 				/>
 			</div>

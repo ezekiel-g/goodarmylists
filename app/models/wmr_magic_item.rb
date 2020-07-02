@@ -3,6 +3,7 @@ class WmrMagicItem < ApplicationRecord
 	validates :display_name, presence: true
 	validates :magic_item_type, presence: true
 	validates :points, presence: true, numericality: { only_integer: true }
+	validates :description, presence: true
 
 	belongs_to :game
 end

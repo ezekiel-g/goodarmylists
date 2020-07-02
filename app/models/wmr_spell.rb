@@ -3,6 +3,7 @@ class WmrSpell < ApplicationRecord
 	validates :display_name, presence: true
 	validates :to_cast, presence: true
 	validates :range, presence: true
+	validates :description, presence: true
 
 	belongs_to :game
 	belongs_to :wmr_army

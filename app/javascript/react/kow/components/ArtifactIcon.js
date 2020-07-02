@@ -3,15 +3,15 @@ import vase from '../../../../assets/images/vase.ico'
 import white_square from '../../../../assets/images/white_square.png'
 import React from 'react'
 
-const ArtefactIcon = props => {
+const ArtifactIcon = props => {
 	let display
 	if (
 		props.no !== 'no' &&
-		props.listedUnitsThatCanHaveArtefacts.includes(props.unitObject)
+		props.listedUnitsThatCanHaveArtifacts.includes(props.unitObject)
 	) {
 		display =
 			<span
-				onClick={() => props.updateUnitBeingGivenArtefact(props.unitObject)}
+				onClick={() => props.updateUnitBeingGivenArtifact(props.unitObject)}
 				className={style['vase']}
 			>
 				<img src={vase} alt="" width={"20"} height={"12"} />
@@ -28,4 +28,4 @@ const ArtefactIcon = props => {
 	)
 }
 
-export default ArtefactIcon
+export default ArtifactIcon

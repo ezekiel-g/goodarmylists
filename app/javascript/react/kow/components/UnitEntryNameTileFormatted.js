@@ -28,19 +28,19 @@ const UnitEntryNameTileFormatted = props => {
 			pointsForEntry += parseInt(props.selectedUnitOptions[i].unitOption.points)
 		}	
 	}
-	let artefact
-	let artefactDisplay
-	if (props.selectedArtefacts !== undefined) {
-		for (i = 0; i < props.selectedArtefacts.length; i++) {
-			if (props.selectedArtefacts[i].index === props.unitObject.index) {
-				artefact = props.selectedArtefacts[i].artefact
-				pointsForEntry += parseInt(props.selectedArtefacts[i].artefact.points)
+	let artifact
+	let artifactDisplay
+	if (props.selectedArtifacts !== undefined) {
+		for (i = 0; i < props.selectedArtifacts.length; i++) {
+			if (props.selectedArtifacts[i].index === props.unitObject.index) {
+				artifact = props.selectedArtifacts[i].artifact
+				pointsForEntry += parseInt(props.selectedArtifacts[i].artifact.points)
 			}
 		}
-		if (artefact !== undefined && artefact !== null) {
-			artefactDisplay =
+		if (artifact !== undefined && artifact !== null) {
+			artifactDisplay =
 				<div>
-					--{' '}<i>{artefact.display_name}</i>
+					--{' '}<i>{artifact.display_name}</i>
 				</div>
 		}
 	}
@@ -70,7 +70,7 @@ const UnitEntryNameTileFormatted = props => {
 	return (
 		<div className={style['formatted-list-entry']}>
 			<div>{pointsForEntry},{' '}{props.unitObject.unit.display_name}</div>
-			{artefactDisplay}
+			{artifactDisplay}
 			{nonSpellDisplay}
 			{spellDisplay}
 		</div>
