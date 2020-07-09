@@ -1,4 +1,4 @@
-import style from '../../../../assets/stylesheets/kow.module.css'
+import style from '../../../../assets/stylesheets/index.module.css'
 import React from 'react'
 import ArtifactSelectionLabel from './ArtifactSelectionLabel'
 

@@ -1,4 +1,4 @@
-import style from '../../../../assets/stylesheets/kow.module.css'
+import style from '../../../../assets/stylesheets/index.module.css'
 import vase from '../../../../assets/images/vase.ico'
 import white_square from '../../../../assets/images/white_square.png'
 import React from 'react'
