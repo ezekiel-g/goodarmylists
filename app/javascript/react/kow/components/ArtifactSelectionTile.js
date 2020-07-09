@@ -13,32 +13,12 @@ const ArtifactSelectionTile = props => {
 	) {
 		for (i = 0; i < artifacts.length; i++) {
 			if (
+				artifacts[i].is_heroic === false &&
 				artifacts[i].name !== 'Blessing of the Gods' &&
 				artifacts[i].name !== 'Chant of Hate' &&
 				artifacts[i].name !== 'Brew of Strength' &&
-				artifacts[i].name !== 'Brew of Sharpness' &&
-				artifacts[i].name !== 'Darklord\'s Onyx Ring' &&
-				artifacts[i].name !== 'Mournful Blade' &&
-				artifacts[i].name !== 'Boots of the Seven Leagues' &&
-				artifacts[i].name !== 'Wings of Honeymaze'
+				artifacts[i].name !== 'Brew of Sharpness'
 
-			) {
-				availableArtifacts.push(artifacts[i])
-			}
-		}
-	}
-
-	if (
-		props.unitObject.unit.unit_type === 'Hero (Infantry)' ||
-		props.unitObject.unit.unit_type === 'Hero (Heavy Infantry)' ||
-		props.unitObject.unit.unit_type === 'Hero (Cavalry)'
-	) {
-		for (i = 0; i < artifacts.length; i++) {
-			if (
-				artifacts[i].name !== 'Blessing of the Gods (Horde)' &&
-				artifacts[i].name !== 'Chant of Hate (Horde)' &&
-				artifacts[i].name !== 'Brew of Strength (Horde)' &&
-				artifacts[i].name !== 'Brew of Sharpness (Horde)'
 			) {
 				availableArtifacts.push(artifacts[i])
 			}
@@ -48,25 +28,54 @@ const ArtifactSelectionTile = props => {
 	if (
 		props.unitObject.unit.unit_size !== 'Horde' &&
 		props.unitObject.unit.unit_size !== 'Legion' &&
-		props.unitObject.unit.unit_type !== 'Hero (Infantry)' &&
-		props.unitObject.unit.unit_type !== 'Hero (Heavy Infantry)' &&
-		props.unitObject.unit.unit_type !== 'Hero (Cavalry)'
+		props.unitObject.unit.unit_type.includes('Hero') === false
 	) {
 		for (i = 0; i < artifacts.length; i++) {
 			if (
+				artifacts[i].is_heroic === false &&
 				artifacts[i].name !== 'Blessing of the Gods (Horde)' &&
 				artifacts[i].name !== 'Chant of Hate (Horde)' &&
 				artifacts[i].name !== 'Brew of Strength (Horde)' &&
-				artifacts[i].name !== 'Brew of Sharpness (Horde)' &&
-				artifacts[i].name !== 'Darklord\'s Onyx Ring' &&
-				artifacts[i].name !== 'Mournful Blade' &&
-				artifacts[i].name !== 'Boots of the Seven Leagues' &&
-				artifacts[i].name !== 'Wings of Honeymaze'
+				artifacts[i].name !== 'Brew of Sharpness (Horde)'
 
 			) {
 				availableArtifacts.push(artifacts[i])
 			}
-		}			
+		}
+	}
+
+	if (props.unitObject.unit.unit_type.includes('Hero')) {
+		if (
+			props.unitObject.unit.unit_type === 'Hero (Infantry)' ||
+			props.unitObject.unit.unit_type === 'Hero (Heavy Infantry)' ||
+			props.unitObject.unit.unit_type === 'Hero (Cavalry)'
+		) {
+			for (i = 0; i < artifacts.length; i++) {
+				if (
+					artifacts[i].name !== 'Blessing of the Gods (Horde)' &&
+					artifacts[i].name !== 'Chant of Hate (Horde)' &&
+					artifacts[i].name !== 'Brew of Strength (Horde)' &&
+					artifacts[i].name !== 'Brew of Sharpness (Horde)'
+				) {
+					availableArtifacts.push(artifacts[i])
+				}
+			}
+		} else {
+			for (i = 0; i < artifacts.length; i++) {
+				if (
+					artifacts[i].name !== 'Blessing of the Gods (Horde)' &&
+					artifacts[i].name !== 'Chant of Hate (Horde)' &&
+					artifacts[i].name !== 'Brew of Strength (Horde)' &&
+					artifacts[i].name !== 'Brew of Sharpness (Horde)' &&
+					artifacts[i].name !== 'Darklord\'s Onyx Ring' &&
+					artifacts[i].name !== 'Mournful Blade' &&
+					artifacts[i].name !== 'Boots of the Seven Leagues' &&
+					artifacts[i].name !== 'Wings of Honeymaze'
+				) {
+					availableArtifacts.push(artifacts[i])
+				}
+			}			
+		}
 	}
 
 	let sortedArtifacts = availableArtifacts.sort((a, b) => {
