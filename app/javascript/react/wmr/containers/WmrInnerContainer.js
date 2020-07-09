@@ -9,16 +9,70 @@ class WmrInnerContainer extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			selectedArmy: ''
+			selectedArmy: '',
+			listedUnits: [],
+			selectedMagicItems: [],
+			pointTotal: 0,
+			indexCount: 0,
+			formattedListVisible: false,
+			magicItemsVisible: false,
+			unitBeingGivenMagicItem: '',
+			
+
 		}
 		this.updateSelectedArmy = this.updateSelectedArmy.bind(this)
+		this.calculatePointTotal = this.calculatePointTotal.bind(this)
+		this.calculateMinMaxes = this.calculateMinMaxes.bind(this)
+		this.addUnitToList = this.addUnitToList.bind(this)
+		this.removeUnitFromList = this.removeUnitFromList.bind(this)
+		this.selectMagicItem = this.selectMagicItem.bind(this)
+		this.removeMagicItem = this.removeMagicItem.bind(this)
+		this.toggleFormattedList = this.toggleFormattedList.bind(this)
+		this.toggleMagicItems = this.toggleMagicItems.bind(this)
+		this.updateUnitBeingGivenMagicItem = this.updateUnitBeingGivenMagicItem.bind(this)
 		this.clearList = this.clearList.bind(this)
 	}
 
 	updateSelectedArmy(army) {
 		this.setState({ selectedArmy: army.value })
 		this.clearList()
-	}		
+	}
+
+	calculatePointTotal() {
+
+	}
+
+	calculateMinMaxes() {
+
+	}
+
+	addUnitToList() {
+
+	}
+
+	removeUnitFromList() {
+
+	}
+
+	selectMagicItem() {
+
+	}
+
+	removeMagicItem() {
+
+	}
+
+	toggleFormattedList() {
+
+	}
+
+	toggleMagicItems() {
+
+	}
+
+	updateUnitBeingGivenMagicItem() {
+
+	}
 
 	clearList() {
 
