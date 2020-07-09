@@ -1,4 +1,4 @@
-import style from '../../../../assets/stylesheets/kow.module.css'
+import style from '../../../../assets/stylesheets/index.module.css'
 import paypal from '../../../../assets/images/paypal.gif'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
@@ -1310,11 +1310,11 @@ class KowInnerContainer extends Component {
 		let appElement = document.getElementById('app')
 		let selectedArmy = this.state.selectedArmy
 		let armyOptions = []
-		let labelledArmy
+		let labeledArmy
 		let i
 		for (i = 0; i < this.props.armies.length; i++) {
-			labelledArmy = { value: this.props.armies[i], label: this.props.armies[i].name }
-			armyOptions.push(labelledArmy)
+			labeledArmy = { value: this.props.armies[i], label: this.props.armies[i].name }
+			armyOptions.push(labeledArmy)
 		}
 		let displayNoneBottom
 		if (selectedArmy === '') {
@@ -2026,12 +2026,12 @@ class KowInnerContainer extends Component {
 					className={style['everything-except-print-section']}
 				>
 					<div id="army-dropdown-section-id" className={style['army-dropdown-section']}>
-						<div className={style['main-page-link']}>
-							<span className={style['main-page-link-label']}>
+						<div className={style['to-main-page-link']}>
+							<span className={style['to-main-page-link-label']}>
 								<Link to="/">-- Good Army Lists --</Link>
 							</span>
 						</div>
-						<div className={style['main-title-box']}>
+						<div className={style['main-title-box-kow']}>
 							<h2 className={style['main-title']}>Make a Good Kings of War List</h2>
 						</div>
 						<div className={style['copyright-notice']}>Kings of War is copyrighted by Mantic Entertainment</div>

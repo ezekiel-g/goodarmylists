@@ -1,4 +1,4 @@
-import style from '../../../../assets/stylesheets/wmr.module.css'
+import style from '../../../../assets/stylesheets/index.module.css'
 import React, { Component } from 'react'
 import WmrInnerContainer from './WmrInnerContainer'
 

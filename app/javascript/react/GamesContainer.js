@@ -1,4 +1,4 @@
-import style from '../../assets/stylesheets/games.module.css'
+import style from '../../assets/stylesheets/index.module.css'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -13,6 +13,13 @@ const GamesContainer = props => {
 					<div className={style['main-page-game']}>
 						<span className={style['main-page-game-label']}>
 							<Link to='/kow'>Kings of War</Link>
+						</span>
+					</div>
+				</div>
+				<div className={style['main-page-games']}>
+					<div className={style['main-page-game']}>
+						<span className={style['main-page-game-label']}>
+							<Link to='/wmr'>Warmaster Revolution</Link>
 						</span>
 					</div>
 				</div>
