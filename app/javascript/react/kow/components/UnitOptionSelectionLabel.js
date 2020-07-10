@@ -32,7 +32,7 @@ const UnitOptionSelectionLabel = props => {
 			<div className={style['unit-option-selection-tile-row']} id={parseInt(props.unitOption.id)}>
 				<div className={style['unit-option-label-div']}>
 					{extraSpace}
-					<span className={style['unit-option-points-label']}>{parseInt(props.unitOption.points)}</span>
+					<span className={style['unit-option-points-label-kow']}>{parseInt(props.unitOption.points)}</span>
 				</div>
 				<div className={style['unit-option-label-div']}>
 					<span

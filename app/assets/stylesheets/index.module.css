@@ -168,9 +168,17 @@ hr {
 	background-color: #FFFFFF;
 }
 
-.unit-entry-button-title-bar {
+.unit-entry-button-title-bar-kow {
 	border-radius: 6px;
 	background-color: #A41F26;
+	color: #FFFFFF;
+	border: 1px solid #000000;
+	margin-bottom: 7px;
+}
+
+.unit-entry-button-title-bar-wmr {
+	border-radius: 6px;
+	background-color: #235347;
 	color: #FFFFFF;
 	border: 1px solid #000000;
 	margin-bottom: 7px;
@@ -196,8 +204,14 @@ hr {
 	color: #949391;
 }
 
-.unit-entry-button-point-value-label {
+.unit-entry-button-point-value-label-kow {
 	color: #FF5349;
+	padding: 2px 0px 2px 0px;
+	margin: 0px 15px 0px 2px;
+}
+
+.unit-entry-button-point-value-label-wmr {
+	color: #235347;
 	padding: 2px 0px 2px 0px;
 	margin: 0px 15px 0px 2px;
 }
@@ -279,7 +293,7 @@ hr {
 	background-color: #D3D3D3;
 }
 
-.allies-title {
+.allies-title-kow {
 	color: #A41F26;
 	font-weight: bolder;
 	text-align: center;
@@ -326,10 +340,16 @@ hr {
 	height: 100%;
 }
 
-.list-entry-label {
+.list-entry-label-kow {
 	cursor: crosshair;
 	color: #A41F26;
 	font-weight: bolder;
+}
+
+.list-entry-label-wmr {
+	cursor: crosshair;
+	color: #235347;
+	font-weight: bolder;	
 }
 
 .spacer-div {
@@ -361,7 +381,7 @@ hr {
 	color: #949391;
 }
 
-.list-title-bar {
+.list-title-bar-kow {
 	border-radius: 6px;
 	background-color: #A41F26;
 	color: #FFFFFF;
@@ -369,9 +389,9 @@ hr {
 	margin-bottom: 2px;
 }
 
-.list-title-bar-kowh {
+.list-title-bar-wmr {
 	border-radius: 6px;
-	background-color: #204A87;
+	background-color: #235347;
 	color: #FFFFFF;
 	border: 1px solid #000000;
 	margin-bottom: 2px;
@@ -438,8 +458,13 @@ hr {
 	line-height: 144%;
 }
 
-.unit-option-title {
+.unit-option-title-kow {
 	color: #A41F26;
+	font-weight: bolder;
+}
+
+.magic-item-title-wmr {
+	color: #235347;
 	font-weight: bolder;
 }
 
@@ -471,8 +496,14 @@ hr {
 	height: 100%;
 }
 
-.unit-option-points-label {
+.unit-option-points-label-kow {
 	color: #FF5349;
+	padding: 2px 0px 2px 0px;
+	margin: 0px 15px 0px 2px;
+}
+
+.magic-item-points-label-wmr {
+	color: #235347;
 	padding: 2px 0px 2px 0px;
 	margin: 0px 15px 0px 2px;
 }
@@ -482,7 +513,7 @@ hr {
 	padding: 2px 0px 2px 0px;
 }
 
-.artifact-title {
+.artifact-title-kow {
 	color: #A41F26;
 	font-weight: bolder;
 	margin-bottom: 15px;
@@ -521,26 +552,6 @@ hr {
     top: 42.5%;
     left: 50%;
     transform: translate(-50%, -50%) !important;
-}
-
-.army-buttons {
-	text-align: center;
-	line-height: 163%;
-	padding: 20px;
-}
-
-.army-buttons-title {
-	color: #A41F26;
-	font-weight: bolder;
-}
-
-.army-button-label {
-	cursor: pointer;
-	padding: 2px 0px 2px 0px;
-}
-
-.army-button-label:hover {
-	background-color: #D3D3D3;
 }
 
 .formatted-list-box {
