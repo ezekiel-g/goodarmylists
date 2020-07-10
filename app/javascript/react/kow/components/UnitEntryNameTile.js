@@ -80,7 +80,7 @@ const UnitEntryNameTile = props => {
 						props.unitObject,
 						props.alliedArmy			
 					)}
-					className={style['list-entry-label']}
+					className={style['list-entry-label-kow']}
 				>
 					{props.unitObject.unit.display_name}
 				</span>

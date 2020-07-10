@@ -1,9 +1,9 @@
 import style from '../../../../assets/stylesheets/index.module.css'
 import React from 'react'
 
-const ArtifactSelectionLabel = props => {
+const MagicItemSelectionLabel = props => {
 	let extraSpace
-	if (parseInt(props.artifact.points) < 10) {
+	if (parseInt(props.magicItem.points) < 10) {
 		extraSpace = <span className={style['hidden']}>{'_'}</span>
 	}
 
@@ -13,14 +13,14 @@ const ArtifactSelectionLabel = props => {
 			<div className={style['unit-option-selection-tile-row']}>
 				<div className={style['unit-option-label-div']}>
 					{extraSpace}
-					<span className={style['unit-option-points-label-kow']}>{parseInt(props.artifact.points)}</span>
+					<span className={style['magic-item-points-label-wmr']}>{parseInt(props.magicItem.points)}</span>
 				</div>
 				<div className={style['unit-option-label-div']}>
 					<span
-						onClick={() => props.selectArtifact(props.unitObject, props.artifact)}
+						onClick={() => props.selectMagicItem(props.unitObject, props.magicItem)}
 						className={style['unit-option-selection-label']}
 					>
-						{props.artifact.display_name}
+						{props.magicItem.display_name}
 					</span>
 				</div>
 			</div>
@@ -29,11 +29,11 @@ const ArtifactSelectionLabel = props => {
 			<div className={style['unit-option-selection-tile-row-greyed-out']}>
 				<div className={style['unit-option-label-div']}>
 					{extraSpace}
-					<span>{parseInt(props.artifact.points)}</span>
+					<span>{parseInt(props.magicItem.points)}</span>
 				</div>
 				<div className={style['unit-option-label-div']}>
 					<span>
-						{props.artifact.display_name}
+						{props.magicItem.display_name}
 					</span>
 				</div>
 			</div>	
@@ -44,4 +44,4 @@ const ArtifactSelectionLabel = props => {
 	)
 }
 
-export default ArtifactSelectionLabel
+export default MagicItemSelectionLabel

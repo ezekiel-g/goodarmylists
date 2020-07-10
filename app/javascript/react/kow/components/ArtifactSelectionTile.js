@@ -114,7 +114,7 @@ const ArtifactSelectionTile = props => {
 
 	return (
 		<div>
-			<h4 className={style['artifact-title']}>
+			<h4 className={style['artifact-title-kow']}>
 				What Magical Artifact will<br />
 				{props.unitObject.unit.display_name} have?
 			</h4><br />

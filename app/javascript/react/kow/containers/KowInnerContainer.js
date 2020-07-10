@@ -1515,7 +1515,7 @@ class KowInnerContainer extends Component {
 					<span onClick={this.clearList} className={style['clear-or-cancel-label']}>Clear List</span>
 				</div>
 			unitEntryButtonTitle = 
-				<div className={style['unit-entry-button-title-bar']}>
+				<div className={style['unit-entry-button-title-bar-kow']}>
 					<h3 className={style['unit-entry-button-title']}>Available Units</h3>
 				</div>
 
@@ -2000,7 +2000,7 @@ class KowInnerContainer extends Component {
 					</div>
 					<div>
 						<div className={style['list-output-side']}>
-							<div className={style['list-title-bar']}>
+							<div className={style['list-title-bar-kow']}>
 								<h3 className={style['list-title']}>{this.state.selectedArmy.name}</h3>
 							</div><br />
 							{listOutputSide}

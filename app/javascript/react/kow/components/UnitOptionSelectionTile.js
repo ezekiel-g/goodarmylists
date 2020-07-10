@@ -347,7 +347,7 @@ class UnitOptionSelectionTile extends Component {
 
 		return (
 			<div>
-				<h4 className={style['unit-option-title']}>
+				<h4 className={style['unit-option-title-kow']}>
 					What option(s) will<br />
 					{unitObject.unit.display_name} have?
 				</h4><br />

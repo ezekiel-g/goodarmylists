@@ -201,7 +201,7 @@ class AllyButtons extends Component {
 		let bottomDisplay
 		if (this.state.alliedUnitChoicesVisible === false) {
 			titleDisplay =
-				<div><h4 className={style['allies-title']}>Which allied army?</h4><br /></div>
+				<div><h4 className={style['allies-title-kow']}>Which allied army?</h4><br /></div>
 			topDisplay = allyChoices.map(army => {
 				return (						
 					<div className={style['allied-army-choices']} key={parseInt(army.id) + 150000}>
@@ -222,7 +222,7 @@ class AllyButtons extends Component {
 		} else {
 			titleDisplay =
 				<div>
-					<h4 className={style['allies-title']}>
+					<h4 className={style['allies-title-kow']}>
 						Add which{' '}{this.state.selectedAlliedArmy.adjective}{' '} unit(s)?
 					</h4><br />
 					<div className={style['change-allied-army-button-div']}>

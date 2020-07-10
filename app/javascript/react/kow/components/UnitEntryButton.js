@@ -29,7 +29,7 @@ const UnitEntryButton = props => {
 			<div className={style['unit-entry-button-row']}>
 				<div className={style['unit-entry-button-point-value-div']}>
 					{extraSpace}
-					<span className={style['unit-entry-button-point-value-label']}>{parseInt(props.unit.points)}{' '}</span>
+					<span className={style['unit-entry-button-point-value-label-kow']}>{parseInt(props.unit.points)}{' '}</span>
 				</div>
 				<div className={style['unit-entry-button-label-div']}>
 					<span
